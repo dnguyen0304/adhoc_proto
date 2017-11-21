@@ -16,8 +16,8 @@ def test_convert_hex_to_int_single_byte():
 
 def test_convert_hex_to_int_multiple_bytes():
 
-    data = ['A', 'A']
-    expected = 170
+    data = ['00', '00', '00', '47']
+    expected = 71
     converted = parsers.convert_hex_to_int(data=data)
     assert_equals(expected, converted)
 
