@@ -64,10 +64,28 @@ def convert_hex_to_str(data):
     return ''.join(convert_hex_to_char(x) for x in data)
 
 
-class HexToType(HexToModel):
+class HexToType(object):
 
     def __init__(self, _convert_hex_to_str=convert_hex_to_str):
         self._convert_hex_to_str = _convert_hex_to_str
 
     def parse(self, data):
+
+        """
+        Parse the data.
+
+        Parameters
+        ----------
+        data : typing.Iterable[str]
+            Sequence of bytes each encoded in base 16 (hexadecimal).
+
+        Returns
+        -------
+        str
+        """
+
         return self._convert_hex_to_str(data=data)
+
+    def __repr__(self):
+        repr_ = '{}()'
+        return repr_.format(self.__class__.__name__)
