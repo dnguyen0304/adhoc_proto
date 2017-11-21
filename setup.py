@@ -11,7 +11,10 @@ if __name__ == '__main__':
     with open('./COMMENTS.md', 'r') as file:
         long_description = file.read()
 
-    install_requires = []
+    install_requires = [
+        # This package is needed by the application layer to implement
+        # data models.
+        'suitcase==0.10.2']
 
     setuptools.setup(name=package_name,
                      version='0.1.0',
