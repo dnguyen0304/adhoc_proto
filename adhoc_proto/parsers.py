@@ -2,6 +2,8 @@
 
 import abc
 
+from . import common
+
 HEXADECIMAL = 16
 
 
@@ -94,3 +96,29 @@ def convert_hex_to_str(data):
     """
 
     return ''.join(convert_hex_to_char(x) for x in data)
+
+
+def convert_hex_to_record_type(data):
+
+    """
+    Convert the data to a RecordType.
+
+    The time complexity is O(1).
+
+    Parameters
+    ----------
+    data : str
+        Byte encoded in base 16 (hexadecimal).
+
+    Returns
+    -------
+    adhoc_proto.common.RecordType
+    """
+
+    mapping = {
+       '': common.RecordType.DEBIT,
+       '1': common.RecordType.CREDIT,
+       '2': common.RecordType.START_AUTO_PAY,
+       '3': common.RecordType.END_AUTO_PAY
+    }
+    return mapping[data.lstrip('0')]
