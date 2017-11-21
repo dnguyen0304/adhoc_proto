@@ -47,7 +47,7 @@ def convert_hex_to_str(data):
 
     Parameters
     ----------
-    data : typing.Iterable[str]
+    data : typing.Sequence[str]
         Sequence of bytes each encoded in base 16 (hexadecimal).
 
     Returns
