@@ -1,44 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import abc
+import suitcase.fields
+import suitcase.structure
 
-from . import parsers
-
-
-class Model(object):
-
-    __metaclass__ = abc.ABCMeta
+PROTOCOL_NAME = 'MPS7'
 
 
-class Header(Model, parsers.HexToModel):
+class Header(suitcase.structure.Structure):
 
-    def __init__(self, protocol, version, length):
-
-        """
-        Parameters
-        ----------
-        protocol : str
-        version : int
-        length : int
-            Count of records.
-        """
-
-        self._protocol = protocol
-        self._version = version
-        self._length = length
-
-    @classmethod
-    def from_hex(cls, data):
-        protocol = parsers.convert_hex_to_str(data=data[:4])
-        version = parsers.convert_hex_to_int(data=data[4])
-        length = parsers.convert_hex_to_int(data=data[5:9])
-        return Header(protocol=protocol,
-                      version=version,
-                      length=length)
-
-    def __repr__(self):
-        repr_ = '{}(protocol="{}", version={}, length={})'
-        return repr_.format(self.__class__.__name__,
-                            self._protocol,
-                            self._version,
-                            self._length)
+    protocol = suitcase.fields.Magic(expected_sequence=PROTOCOL_NAME)
+    version = suitcase.fields.UBInt8()
+    record_count = suitcase.fields.UBInt32()
