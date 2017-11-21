@@ -5,6 +5,14 @@ import abc
 from . import parsers
 
 
+class RecordType(object):
+
+    DEBIT = 0
+    CREDIT = 1
+    START_AUTO_PAY = 2
+    END_AUTO_PAY = 3
+
+
 class Model(object):
 
     __metaclass__ = abc.ABCMeta
