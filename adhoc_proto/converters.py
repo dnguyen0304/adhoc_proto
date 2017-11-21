@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import abc
 
-HEXADECIMAL = 16
+class BuiltIn(object):
 
+    _HEXADECIMAL = 16
 
-class Converter(object):
-
-    __metaclass__ = abc.ABCMeta
-
-    @abc.abstractmethod
     def convert_hex_to_int(self, data):
 
         """
@@ -26,13 +21,7 @@ class Converter(object):
         int
         """
 
-        raise NotImplementedError
-
-
-class BuiltIn(Converter):
-
-    def convert_hex_to_int(self, data):
-        return int(''.join(data), base=HEXADECIMAL)
+        return int(''.join(data), base=self._HEXADECIMAL)
 
     def __repr__(self):
         repr_ = '{}()'
