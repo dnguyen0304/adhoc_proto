@@ -40,7 +40,7 @@ class HexToModel(object):
         adhoc_proto.models.Model
         """
 
-        pass
+        raise NotImplementedError
 
 
 def convert_hex_to_int(data):
