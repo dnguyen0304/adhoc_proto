@@ -14,13 +14,13 @@ class TestBuiltIn(object):
         self.converter = converters.BuiltIn()
 
     def test_convert_hex_to_int_single_byte(self):
-        data = ['00']
         expected = 0
+        data = '0'
         converted = self.converter.convert_hex_to_int(data=data)
         assert_equals(expected, converted)
 
     def test_convert_hex_to_int_multiple_bytes(self):
-        data = ['00', '00', '00', '47']
         expected = 71
+        data = hex(expected).lstrip('0x')
         converted = self.converter.convert_hex_to_int(data=data)
         assert_equals(expected, converted)
