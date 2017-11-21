@@ -26,3 +26,21 @@ class HexToModel(object):
         """
 
         pass
+
+
+def convert_hex_to_char(data):
+
+    """
+    Convert the data to a character.
+
+    Parameters
+    ----------
+    data : str
+        Byte encoded in base 16 (hexadecimal).
+
+    Returns
+    -------
+    str
+    """
+
+    return chr(int(data, base=HEXADECIMAL))
