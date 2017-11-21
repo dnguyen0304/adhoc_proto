@@ -22,15 +22,15 @@ class HexToModel(object):
 
     __metaclass__ = abc.ABCMeta
 
-    @abc.abstractmethod
-    def parse(self, data):
+    @abstractclassmethod
+    def from_hex(self, data):
 
         """
         Parse the data.
 
         Parameters
         ----------
-        data : typing.Iterable[str]
+        data : typing.Sequence[str]
             Sequence of bytes each encoded in base 16 (hexadecimal).
 
         Returns
