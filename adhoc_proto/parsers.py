@@ -2,6 +2,8 @@
 
 import abc
 
+HEXADECIMAL = 16
+
 
 class HexToModel(object):
 
