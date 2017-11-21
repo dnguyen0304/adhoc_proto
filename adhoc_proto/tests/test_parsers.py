@@ -19,11 +19,3 @@ def test_convert_hex_to_str():
     expected = 'foo'
     converted = parsers.convert_hex_to_str(data=data)
     assert_equals(expected, converted)
-
-
-def test_hex_to_type_parse():
-
-    data = ['4D', '50', '53', '37']
-    expected = 'MPS7'
-    parsed = parsers.HexToType().parse(data=data)
-    assert_equals(expected, parsed)
