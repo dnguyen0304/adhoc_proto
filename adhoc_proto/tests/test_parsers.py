@@ -5,6 +5,22 @@ from nose.tools import assert_equals
 from .. import parsers
 
 
+def test_convert_hex_to_int_single_byte():
+
+    data = ['00']
+    expected = 0
+    converted = parsers.convert_hex_to_int(data=data)
+    assert_equals(expected, converted)
+
+
+def test_convert_hex_to_int_multiple_bytes():
+
+    data = ['A', 'A']
+    expected = 170
+    converted = parsers.convert_hex_to_int(data=data)
+    assert_equals(expected, converted)
+
+
 def test_convert_hex_to_char():
 
     data = '41'

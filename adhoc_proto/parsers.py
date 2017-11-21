@@ -28,6 +28,25 @@ class HexToModel(object):
         pass
 
 
+def convert_hex_to_int(data):
+
+    """
+    Convert the data to a int.
+
+    Parameters
+    ----------
+    data : typing.Sequence[str]
+        Sequence of bytes each encoded in base 16 (hexadecimal). Its
+        length is used to infer the size of the integer.
+
+    Returns
+    -------
+    int
+    """
+
+    return int(''.join(data), base=HEXADECIMAL)
+
+
 def convert_hex_to_char(data):
 
     """
@@ -49,7 +68,7 @@ def convert_hex_to_char(data):
 def convert_hex_to_str(data):
 
     """
-    Convert the data to string.
+    Convert the data to a string.
 
     Parameters
     ----------
