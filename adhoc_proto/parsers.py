@@ -44,3 +44,21 @@ def convert_hex_to_char(data):
     """
 
     return chr(int(data, base=HEXADECIMAL))
+
+
+def convert_hex_to_str(data):
+
+    """
+    Convert the data to string.
+
+    Parameters
+    ----------
+    data : typing.Iterable[str]
+        Sequence of bytes each encoded in base 16 (hexadecimal).
+
+    Returns
+    -------
+    str
+    """
+
+    return ''.join(convert_hex_to_char(x) for x in data)
