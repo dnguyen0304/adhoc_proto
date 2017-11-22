@@ -2,6 +2,7 @@
 
 from nose.tools import assert_equals
 
+from .. import common
 from .. import converters
 
 
@@ -23,4 +24,22 @@ class TestBuiltIn(object):
         expected = 71
         data = hex(expected).lstrip('0x')
         converted = self.converter.convert_hex_to_int(data=data)
+        assert_equals(expected, converted)
+
+    def test_convert_hex_to_char(self):
+        expected = 'A'
+        data = hex(ord(expected)).lstrip('0x')
+        converted = self.converter.convert_hex_to_char(data=data)
+        assert_equals(expected, converted)
+
+    def test_convert_hex_to_str(self):
+        expected = 'foo'
+        data = (hex(ord(char)).lstrip('0x') for char in expected)
+        converted = self.converter.convert_hex_to_str(data=data)
+        assert_equals(expected, converted)
+
+    def test_convert_hex_to_record_type(self):
+        data = '00'
+        expected = common.RecordType.DEBIT
+        converted = self.converter.convert_hex_to_record_type(data=data)
         assert_equals(expected, converted)
