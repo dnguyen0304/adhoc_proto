@@ -5,7 +5,7 @@ import math
 from . import common
 
 
-def calculate_debit_sum(log):
+def calculate_debit_sum(records):
 
     """
     Calculate the total amount of debits.
@@ -15,7 +15,7 @@ def calculate_debit_sum(log):
 
     Parameters
     ----------
-    log : typing.Sequence[adhoc_proto.models.Record]
+    records : typing.Sequence[adhoc_proto.models.Record]
 
     Returns
     -------
@@ -24,11 +24,11 @@ def calculate_debit_sum(log):
 
     return math.fsum(record.amount
                      for record
-                     in log
+                     in records
                      if record.type == common.RecordType.DEBIT)
 
 
-def calculate_credit_sum(log):
+def calculate_credit_sum(records):
 
     """
     Calculate the total amount of credit.
@@ -38,7 +38,7 @@ def calculate_credit_sum(log):
 
     Parameters
     ----------
-    log : typing.Sequence[adhoc_proto.models.Record]
+    records : typing.Sequence[adhoc_proto.models.Record]
 
     Returns
     -------
@@ -47,11 +47,11 @@ def calculate_credit_sum(log):
 
     return math.fsum(record.amount
                      for record
-                     in log
+                     in records
                      if record.type == common.RecordType.CREDIT)
 
 
-def calculate_auto_pay_started_count(log):
+def calculate_auto_pay_started_count(records):
 
     """
     Calculate the total number of auto pays started.
@@ -61,7 +61,7 @@ def calculate_auto_pay_started_count(log):
 
     Parameters
     ----------
-    log : typing.Sequence[adhoc_proto.models.Record]
+    records : typing.Sequence[adhoc_proto.models.Record]
 
     Returns
     -------
@@ -70,11 +70,11 @@ def calculate_auto_pay_started_count(log):
 
     return sum(1
                for record
-               in log
+               in records
                if record.type == common.RecordType.START_AUTO_PAY)
 
 
-def calculate_auto_pay_ended_count(log):
+def calculate_auto_pay_ended_count(records):
 
     """
     Calculate the total number of auto pays ended.
@@ -84,7 +84,7 @@ def calculate_auto_pay_ended_count(log):
 
     Parameters
     ----------
-    log : typing.Sequence[adhoc_proto.models.Record]
+    records : typing.Sequence[adhoc_proto.models.Record]
 
     Returns
     -------
@@ -93,11 +93,11 @@ def calculate_auto_pay_ended_count(log):
 
     return sum(1
                for record
-               in log
+               in records
                if record.type == common.RecordType.END_AUTO_PAY)
 
 
-def calculate_balance_sum(log, users_id):
+def calculate_balance_sum(records, users_id):
 
     """
     Calculate the total balance for a user.
@@ -107,7 +107,7 @@ def calculate_balance_sum(log, users_id):
 
     Parameters
     ----------
-    log : typing.Sequence[adhoc_proto.models.Record]
+    records : typing.Sequence[adhoc_proto.models.Record]
     users_id : int
 
     Returns
@@ -116,7 +116,7 @@ def calculate_balance_sum(log, users_id):
     """
 
     def helper():
-        for record in log:
+        for record in records:
             if record.users_id != users_id:
                 continue
             if record.type == common.RecordType.DEBIT:
