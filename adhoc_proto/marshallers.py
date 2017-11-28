@@ -118,17 +118,15 @@ class BytesToRecord(BytesToStructure):
 
 class BytesToLog(BytesToStructures):
 
-    def __init__(self, file, header_marshaller, record_marshaller):
+    def __init__(self, header_marshaller, record_marshaller):
 
         """
         Parameters
         ----------
-        file : file
         header_marshaller : adhoc_proto.marshallers.BytesToStructure
         record_marshaller : adhoc_proto.marshallers.BytesToStructure
         """
 
-        self._file = file
         self._header_marshaller = header_marshaller
         self._record_marshaller = record_marshaller
 
@@ -156,8 +154,7 @@ class BytesToLog(BytesToStructures):
         return log
 
     def __repr__(self):
-        repr_ = '{}(file={}, header_marshaller={}, record_marshaller)'
+        repr_ = '{}(header_marshaller={}, record_marshaller)'
         return repr_.format(self.__class__.__name__,
-                            self._file,
                             self._header_marshaller,
                             self._record_marshaller)
