@@ -23,6 +23,22 @@ class ByteToStructure(object, metaclass=abc.ABCMeta):
         raise NotImplementedError
 
 
+class ByteToStructures(object, metaclass=abc.ABCMeta):
+
+    @abc.abstractmethod
+    def marshall(self):
+
+        """
+        Marshall the bytes into a collection of structures.
+
+        Returns
+        -------
+        typing.Sequence[suitcase.structure.Structure]
+        """
+
+        raise NotImplementedError
+
+
 class ByteToHeader(ByteToStructure):
 
     def __init__(self, file):
