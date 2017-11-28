@@ -5,7 +5,7 @@ import math
 from . import common
 
 
-def calculate_debit_total(log):
+def calculate_debit_sum(log):
 
     """
     Calculate the total amount of debits.
@@ -28,7 +28,7 @@ def calculate_debit_total(log):
                      if record.type == common.RecordType.DEBIT)
 
 
-def calculate_credit_total(log):
+def calculate_credit_sum(log):
 
     """
     Calculate the total amount of credit.

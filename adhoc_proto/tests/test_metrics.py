@@ -7,7 +7,7 @@ from .. import metrics
 from .. import models
 
 
-class TestCalculateDebitTotal(object):
+class TestCalculateDebitSum(object):
 
     def __init__(self):
         self.log = None
@@ -28,8 +28,8 @@ class TestCalculateDebitTotal(object):
         self.log.append(record_2)
 
     def test_sum(self):
-        debit_total = metrics.calculate_debit_total(log=self.log)
-        assert_equals(self.expected, debit_total)
+        debit_sum = metrics.calculate_debit_sum(log=self.log)
+        assert_equals(self.expected, debit_sum)
 
     def test_filter(self):
         record_3 = models.Record()
@@ -38,11 +38,11 @@ class TestCalculateDebitTotal(object):
 
         self.log.append(record_3)
 
-        debit_total = metrics.calculate_debit_total(log=self.log)
-        assert_equals(self.expected, debit_total)
+        debit_sum = metrics.calculate_debit_sum(log=self.log)
+        assert_equals(self.expected, debit_sum)
 
 
-class TestCalculateCreditTotal(object):
+class TestCalculateCreditSum(object):
 
     def __init__(self):
         self.log = None
@@ -63,8 +63,8 @@ class TestCalculateCreditTotal(object):
         self.log.append(record_2)
 
     def test_sum(self):
-        credit_total = metrics.calculate_credit_total(log=self.log)
-        assert_equals(self.expected, credit_total)
+        credit_sum = metrics.calculate_credit_sum(log=self.log)
+        assert_equals(self.expected, credit_sum)
 
     def test_filter(self):
         record_3 = models.Record()
@@ -73,8 +73,8 @@ class TestCalculateCreditTotal(object):
 
         self.log.append(record_3)
 
-        credit_total = metrics.calculate_credit_total(log=self.log)
-        assert_equals(self.expected, credit_total)
+        credit_sum = metrics.calculate_credit_sum(log=self.log)
+        assert_equals(self.expected, credit_sum)
 
 
 class TestCalculateAutoPayStartedCount(object):
