@@ -65,6 +65,8 @@ class Record(suitcase.structure.Structure):
         0x02: common.RecordType.START_AUTO_PAY,
         0x03: common.RecordType.END_AUTO_PAY
     }
+    LENGTH_BYTES = 13
+    CONDITIONAL_LENGTH_BYTES = LENGTH_BYTES + 8
 
     _type = UBInt8()
     timestamp = UBInt32()
