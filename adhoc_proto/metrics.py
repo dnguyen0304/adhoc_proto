@@ -31,7 +31,7 @@ def calculate_debit_sum(records):
 def calculate_credit_sum(records):
 
     """
-    Calculate the total amount of credit.
+    Calculate the total amount of credits.
 
     The units are in dollars. The time complexity is O(n), where n
     is the number of records in the log.
