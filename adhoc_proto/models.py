@@ -19,6 +19,40 @@ class Header(suitcase.structure.Structure):
     record_count = UBInt32()
 
 
+def _is_debit_record(record):
+
+    """
+    Assert the record is a debit record.
+
+    Parameters
+    ----------
+    record : adhoc_proto.models.Record
+
+    Returns
+    -------
+    bool
+    """
+
+    return record.type == common.RecordType.DEBIT
+
+
+def _is_credit_record(record):
+
+    """
+    Assert the record is a credit record.
+
+    Parameters
+    ----------
+    record : adhoc_proto.models.Record
+
+    Returns
+    -------
+    bool
+    """
+
+    return record.type == common.RecordType.CREDIT
+
+
 class Record(suitcase.structure.Structure):
 
     _RECORD_TYPE_MAPPING = {

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from nose.tools import assert_equals
+from nose.tools import assert_equals, assert_true
 
 from .. import common
 from .. import converters
@@ -21,6 +21,22 @@ def test_header_from_data():
     assert_equals(expected.protocol, header.protocol)
     assert_equals(expected.version, header.version)
     assert_equals(expected.record_count, header.record_count)
+
+
+def test_is_debit_record():
+
+    record = models.Record()
+    record.type = common.RecordType.DEBIT
+
+    assert_true(models._is_debit_record(record))
+
+
+def test_is_credit_record():
+
+    record = models.Record()
+    record.type = common.RecordType.CREDIT
+
+    assert_true(models._is_credit_record(record))
 
 
 def test_record_from_data():
