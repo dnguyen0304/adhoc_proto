@@ -82,6 +82,8 @@ class BytesToRecord(BytesToStructure):
 
     def marshall(self):
         data = self._file.read(models.Record.LENGTH_BYTES)
+        if len(data) < models.Record.LENGTH_BYTES:
+            return None
         try:
             record = models.Record.from_data(data)
         except suitcase.exceptions.SuitcaseParseError:

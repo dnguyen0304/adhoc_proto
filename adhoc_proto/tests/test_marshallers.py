@@ -16,3 +16,13 @@ def test_bytes_to_header_marshall_eof():
     header = marshaller.marshall()
 
     assert_is_none(header)
+
+
+def test_bytes_to_record_marshall_eof():
+
+    buffer = ''.join(' ' for _ in xrange(models.Record.LENGTH_BYTES - 1))
+    file = StringIO.StringIO(buffer)
+    marshaller = marshallers.BytesToRecord(file=file)
+    record = marshaller.marshall()
+
+    assert_is_none(record)
