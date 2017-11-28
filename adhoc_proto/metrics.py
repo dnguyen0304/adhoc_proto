@@ -72,3 +72,26 @@ def calculate_auto_pay_started_count(log):
                for record
                in log
                if record.type == common.RecordType.START_AUTO_PAY)
+
+
+def calculate_auto_pay_ended_count(log):
+
+    """
+    Calculate the total number of auto pays ended.
+
+    The time complexity is O(n), where n is the number of records in the
+    log.
+
+    Parameters
+    ----------
+    log : typing.Sequence[adhoc_proto.models.Record]
+
+    Returns
+    -------
+    int
+    """
+
+    return sum(1
+               for record
+               in log
+               if record.type == common.RecordType.END_AUTO_PAY)
