@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import suitcase.structure
-from suitcase.fields import (FieldProperty,
+from suitcase.fields import (ConditionalField,
+                             FieldProperty,
                              Magic,
                              UBInt8,
                              UBInt32,
                              UBInt64)
 
 from . import common
+from . import fields
 
 PROTOCOL_NAME = 'MPS7'
 
@@ -65,6 +67,12 @@ class Record(suitcase.structure.Structure):
     _type = UBInt8()
     timestamp = UBInt32()
     users_id = UBInt64()
+    # suitcase.fields.ConditionalField requires a condition argument,
+    # which is a callable that accepts a suitcase.structure.Structure
+    # (adhoc_proto.models.Record in this case) and returns a boolean.
+    amount = ConditionalField(
+        field=fields.SBFloat64(),
+        condition=lambda x: _is_debit_record(x) or _is_credit_record(x))
 
     type = FieldProperty(field=_type,
                          onget=lambda x: Record._RECORD_TYPE_MAPPING[x])
