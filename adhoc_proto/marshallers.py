@@ -7,7 +7,7 @@ import suitcase.exceptions
 from . import models
 
 
-class ByteToStructure(object, metaclass=abc.ABCMeta):
+class BytesToStructure(object, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def marshall(self):
@@ -23,7 +23,7 @@ class ByteToStructure(object, metaclass=abc.ABCMeta):
         raise NotImplementedError
 
 
-class ByteToStructures(object, metaclass=abc.ABCMeta):
+class BytesToStructures(object, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def marshall(self):
@@ -39,7 +39,7 @@ class ByteToStructures(object, metaclass=abc.ABCMeta):
         raise NotImplementedError
 
 
-class ByteToHeader(ByteToStructure):
+class BytesToHeader(BytesToStructure):
 
     def __init__(self, file):
 
@@ -61,7 +61,7 @@ class ByteToHeader(ByteToStructure):
         return repr_.format(self.__class__.__name__, self._file)
 
 
-class ByteToRecord(ByteToStructure):
+class BytesToRecord(BytesToStructure):
 
     def __init__(self, file):
 
