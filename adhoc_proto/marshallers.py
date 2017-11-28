@@ -45,7 +45,7 @@ class ByteToHeader(ByteToStructure):
         return repr_.format(self.__class__.__name__, self._file)
 
 
-class Record(ByteToStructure):
+class ByteToRecord(ByteToStructure):
 
     def __init__(self, file):
 
