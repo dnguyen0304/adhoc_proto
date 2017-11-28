@@ -7,23 +7,23 @@ import suitcase.exceptions
 from . import models
 
 
-class Marshaller(object, metaclass=abc.ABCMeta):
+class ByteToStructure(object, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
-    def read(self):
+    def marshall(self):
 
         """
-        Read the source into a sequence.
+        Marshall the bytes into a structure.
 
         Returns
         -------
-        typing.Sequence
+        suitcase.structure.Structure
         """
 
         raise NotImplementedError
 
 
-class Header(Marshaller):
+class Header(ByteToStructure):
 
     def __init__(self, file):
 
@@ -35,7 +35,7 @@ class Header(Marshaller):
 
         self._file = file
 
-    def read(self):
+    def marshall(self):
         data = self._file.read(models.Header.LENGTH_BYTES)
         header = models.Header.from_data(data)
         return list(header)
@@ -45,7 +45,7 @@ class Header(Marshaller):
         return repr_.format(self.__class__.__name__, self._file)
 
 
-class Record(Marshaller):
+class Record(ByteToStructure):
 
     def __init__(self, file):
 
@@ -57,7 +57,7 @@ class Record(Marshaller):
 
         self._file = file
 
-    def read(self):
+    def marshall(self):
         data = self._file.read(models.Record.LENGTH_BYTES)
         try:
             record = models.Record.from_data(data)
