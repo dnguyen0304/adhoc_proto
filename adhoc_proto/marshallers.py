@@ -114,3 +114,50 @@ class BytesToRecord(BytesToStructure):
     def __repr__(self):
         repr_ = '{}(file={})'
         return repr_.format(self.__class__.__name__, self._file)
+
+
+class BytesToLog(BytesToStructures):
+
+    def __init__(self, file, header_marshaller, record_marshaller):
+
+        """
+        Parameters
+        ----------
+        file : file
+        header_marshaller : adhoc_proto.marshallers.BytesToStructure
+        record_marshaller : adhoc_proto.marshallers.BytesToStructure
+        """
+
+        self._file = file
+        self._header_marshaller = header_marshaller
+        self._record_marshaller = record_marshaller
+
+    def marshall(self):
+
+        """
+        The time complexity is O(n), where n is the number of bytes
+        being read.
+
+        Returns
+        -------
+        typing.Sequence[suitcase.structure.Structure]
+        """
+
+        log = list()
+        # Marshall the header.
+        header = self._header_marshaller.marshall()
+        log.append(header)
+        # Marshall the records.
+        for _ in xrange(header.record_count):
+            record = self._record_marshaller.marshall()
+            if record is None:
+                break
+            log.append(record)
+        return log
+
+    def __repr__(self):
+        repr_ = '{}(file={}, header_marshaller={}, record_marshaller)'
+        return repr_.format(self.__class__.__name__,
+                            self._file,
+                            self._header_marshaller,
+                            self._record_marshaller)
