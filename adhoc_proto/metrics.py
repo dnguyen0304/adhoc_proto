@@ -95,3 +95,35 @@ def calculate_auto_pay_ended_count(log):
                for record
                in log
                if record.type == common.RecordType.END_AUTO_PAY)
+
+
+def calculate_balance_sum(log, users_id):
+
+    """
+    Calculate the total balance for a user.
+
+    The time complexity is O(n), where n is the number of records in
+    the log.
+
+    Parameters
+    ----------
+    log : typing.Sequence[adhoc_proto.models.Record]
+    users_id : int
+
+    Returns
+    -------
+    int
+    """
+
+    def helper():
+        for record in log:
+            if record.users_id != users_id:
+                continue
+            if record.type == common.RecordType.DEBIT:
+                # Debits remove money from an account
+                yield -record.amount
+            if record.type == common.RecordType.CREDIT:
+                # Credits add money to an account.
+                yield record.amount
+
+    return sum(helper())
