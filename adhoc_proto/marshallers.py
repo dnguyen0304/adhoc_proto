@@ -7,7 +7,7 @@ import suitcase.exceptions
 from . import models
 
 
-class Reader(object, metaclass=abc.ABCMeta):
+class Marshaller(object, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def read(self):
@@ -23,7 +23,7 @@ class Reader(object, metaclass=abc.ABCMeta):
         raise NotImplementedError
 
 
-class Header(Reader):
+class Header(Marshaller):
 
     def __init__(self, file):
 
@@ -45,7 +45,7 @@ class Header(Reader):
         return repr_.format(self.__class__.__name__, self._file)
 
 
-class Record(Reader):
+class Record(Marshaller):
 
     def __init__(self, file):
 
