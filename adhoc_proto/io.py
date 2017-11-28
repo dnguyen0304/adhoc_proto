@@ -3,7 +3,7 @@
 import abc
 
 
-class Reader(metaclass=abc.ABCMeta):
+class Reader(object, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def read(self):
