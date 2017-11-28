@@ -57,7 +57,10 @@ class BytesToHeader(BytesToStructure):
 
     def marshall(self):
         data = self._file.read(models.Header.LENGTH_BYTES)
-        header = models.Header.from_data(data)
+        if len(data) < models.Header.LENGTH_BYTES:
+            header = None
+        else:
+            header = models.Header.from_data(data)
         return header
 
     def __repr__(self):
