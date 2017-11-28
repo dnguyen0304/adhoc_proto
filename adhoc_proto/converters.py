@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
 
+import struct
+
 from . import common
 
 HEXADECIMAL = 16
+
+BIG_ENDIAN = '>'
+DOUBLE = 'd'
 
 
 class BuiltIn(object):
@@ -60,6 +65,10 @@ class BuiltIn(object):
         """
 
         return ''.join(self.convert_hex_to_char(x) for x in data)
+
+    @staticmethod
+    def convert_hex_to_double(data):
+        return struct.unpack(BIG_ENDIAN + DOUBLE, data)[0]
 
     @staticmethod
     def convert_hex_to_record_type(data):
