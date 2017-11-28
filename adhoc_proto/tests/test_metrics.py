@@ -75,3 +75,37 @@ class TestCalculateCreditTotal(object):
 
         credit_total = metrics.calculate_credit_total(log=self.log)
         assert_equals(self.expected, credit_total)
+
+
+class TestCalculateAutoPayStartedCount(object):
+
+    def __init__(self):
+        self.log = None
+        self.expected = None
+
+    def setup(self):
+        self.log = list()
+
+        record_1 = models.Record()
+        record_2 = models.Record()
+        record_1.type = common.RecordType.START_AUTO_PAY
+        record_2.type = common.RecordType.START_AUTO_PAY
+
+        self.log.append(record_1)
+        self.log.append(record_2)
+        self.expected = len(self.log)
+
+    def test_count(self):
+        auto_pay_started_count = metrics.calculate_auto_pay_started_count(
+            log=self.log)
+        assert_equals(self.expected, auto_pay_started_count)
+
+    def test_filter(self):
+        record_3 = models.Record()
+        record_3.type = common.RecordType.END_AUTO_PAY
+
+        self.log.append(record_3)
+
+        auto_pay_started_count = metrics.calculate_auto_pay_started_count(
+            log=self.log)
+        assert_equals(self.expected, auto_pay_started_count)
