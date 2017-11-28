@@ -91,6 +91,16 @@ class BytesToRecord(BytesToStructure):
         self._file = file
 
     def marshall(self):
+
+        """
+        The time complexity is O(n), where n is the number of bytes
+        being read.
+
+        Returns
+        -------
+        adhoc_proto.models.Record
+        """
+
         data = self._file.read(models.Record.LENGTH_BYTES)
         if len(data) < models.Record.LENGTH_BYTES:
             return None
