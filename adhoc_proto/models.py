@@ -16,6 +16,8 @@ PROTOCOL_NAME = 'MPS7'
 
 class Header(suitcase.structure.Structure):
 
+    LENGTH_BYTES = 9
+
     protocol = Magic(expected_sequence=PROTOCOL_NAME)
     version = UBInt8()
     record_count = UBInt32()
