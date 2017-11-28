@@ -56,6 +56,16 @@ class BytesToHeader(BytesToStructure):
         self._file = file
 
     def marshall(self):
+
+        """
+        The time complexity is O(n), where n is the number of bytes
+        being read.
+
+        Returns
+        -------
+        adhoc_proto.models.Header
+        """
+
         data = self._file.read(models.Header.LENGTH_BYTES)
         if len(data) < models.Header.LENGTH_BYTES:
             header = None
