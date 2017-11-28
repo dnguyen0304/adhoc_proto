@@ -68,7 +68,7 @@ class BuiltIn(object):
 
     @staticmethod
     def convert_hex_to_double(data):
-        return struct.unpack(BIG_ENDIAN + DOUBLE, data)[0]
+        return struct.unpack(BIG_ENDIAN + DOUBLE, data.decode('hex'))[0]
 
     @staticmethod
     def convert_hex_to_record_type(data):
