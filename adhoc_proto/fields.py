@@ -9,11 +9,6 @@ from suitcase.fields import BaseStructField
 #
 # Links
 # [1] https://github.com/digidotcom/python-suitcase/pull/46
-class SBFloat32(BaseStructField):
-    """Signed Big Endian 32-bit float field."""
-    PACK_FORMAT = UNPACK_FORMAT = b">f"
-
-
 class SBFloat64(BaseStructField):
     """Signed Big Endian 64-bit float field."""
     PACK_FORMAT = UNPACK_FORMAT = b">d"
